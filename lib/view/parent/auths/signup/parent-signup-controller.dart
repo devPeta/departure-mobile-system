@@ -1,3 +1,4 @@
+import 'package:daycare_management_system_mobile/view/parent/auths/otp/parent-otp-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -70,7 +71,7 @@ class ParentSignupController extends GetxController {
       );
 
       // TODO: Navigate to Step 3 after backend integration.
-      // Get.toNamed('/parent-signup-step-3');
+      Get.to(ParentOtpScreen(email: emailController.text.trim(),));
     } catch (e) {
       Get.snackbar(
         'Error',
