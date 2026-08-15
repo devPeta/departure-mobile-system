@@ -1,4 +1,4 @@
-import 'package:daycare_management_system_mobile/view/daycarestaff/home/dispatch-model.dart';
+import 'package:daycare_management_system_mobile/view/staff/home/dispatch-model.dart';
 import 'package:flutter/material.dart';
 
 class DispatchCard extends StatelessWidget {

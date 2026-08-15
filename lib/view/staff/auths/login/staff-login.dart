@@ -1,7 +1,7 @@
 import 'package:daycare_management_system_mobile/components/daycar-textfield.dart';
 import 'package:daycare_management_system_mobile/components/daycare-button.dart';
 import 'package:daycare_management_system_mobile/components/daycare-logo.dart';
-import 'package:daycare_management_system_mobile/view/daycarestaff/auths/login/staff-login-controller.dart';
+import 'package:daycare_management_system_mobile/view/staff/auths/login/staff-login-controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

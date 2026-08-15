@@ -1,9 +1,10 @@
-import 'package:daycare_management_system_mobile/view/daycarestaff/home/staff-homepage-controller.dart';
-import 'package:daycare_management_system_mobile/view/daycarestaff/home/widgets/dispatch-grid.dart';
-import 'package:daycare_management_system_mobile/view/daycarestaff/home/widgets/dispatch-header.dart';
-import 'package:daycare_management_system_mobile/view/daycarestaff/home/widgets/scanqr.dart';
-import 'package:daycare_management_system_mobile/view/daycarestaff/home/widgets/staff-header.dart';
-import 'package:daycare_management_system_mobile/view/daycarestaff/home/widgets/summarygrid.dart';
+
+import 'package:daycare_management_system_mobile/view/staff/home/staff-homepage-controller.dart';
+import 'package:daycare_management_system_mobile/view/staff/home/widgets/dispatch-grid.dart';
+import 'package:daycare_management_system_mobile/view/staff/home/widgets/dispatch-header.dart';
+import 'package:daycare_management_system_mobile/view/staff/home/widgets/scanqr.dart';
+import 'package:daycare_management_system_mobile/view/staff/home/widgets/staff-header.dart';
+import 'package:daycare_management_system_mobile/view/staff/home/widgets/summarygrid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

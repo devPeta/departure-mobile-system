@@ -1,5 +1,6 @@
-import 'package:daycare_management_system_mobile/view/daycarestaff/auths/login/staff-login.dart';
+
 import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-login.dart';
+import 'package:daycare_management_system_mobile/view/staff/auths/login/staff-login.dart';
 import 'package:get/get.dart';
 
 import '../adminstrator/auths/login/admin-login.dart';

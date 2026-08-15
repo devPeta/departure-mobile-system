@@ -1,5 +1,5 @@
-import 'package:daycare_management_system_mobile/view/daycarestaff/home/staff-homepage-controller.dart';
-import 'package:daycare_management_system_mobile/view/daycarestaff/home/widgets/summary-card.dart';
+import 'package:daycare_management_system_mobile/view/staff/home/staff-homepage-controller.dart';
+import 'package:daycare_management_system_mobile/view/staff/home/widgets/summary-card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
