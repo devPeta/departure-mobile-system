@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:daycare_management_system_mobile/view/parent/auths/verification/parent-verification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -69,7 +70,7 @@ class ParentOtpController extends GetxController {
       debugPrint('OTP: $otp');
 
       // After successful verification:
-      // Get.offAllNamed('/parent-dashboard');
+      Get.to(ParentVerificationScreen());
 
     } finally {
       isLoading.value = false;

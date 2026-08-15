@@ -198,9 +198,7 @@ class ParentOtpScreen extends StatelessWidget {
 
               const SizedBox(height: 32),
 
-              // ==========================================
-              // VERIFY BUTTON
-              // ==========================================
+
 
               Obx(
                     () => SizedBox(
