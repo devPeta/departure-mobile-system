@@ -2,10 +2,11 @@ import 'package:daycare_management_system_mobile/components/daycar-textfield.dar
 import 'package:daycare_management_system_mobile/components/daycare-button.dart';
 import 'package:daycare_management_system_mobile/components/daycare-logo.dart';
 import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-login-controller.dart';
+import 'package:daycare_management_system_mobile/view/parent/auths/signup/parent-signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class ParentLogin extends StatelessWidget {
@@ -200,7 +201,7 @@ class ParentLogin extends StatelessWidget {
                           SizedBox(width: 6.w),
                           GestureDetector(
                             onTap: () {
-                              context.go('/signup');
+                              Get.to(ParentSignup(),);
                             },
                             child: Text(
                               'Sign up',
