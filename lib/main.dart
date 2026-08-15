@@ -1,6 +1,7 @@
 import 'package:daycare_management_system_mobile/view/onboarding/onboarding-page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-      return MaterialApp(
+      return GetMaterialApp(
       title: 'DayCare Management System',
       theme: ThemeData(
         // This is the theme of your application.

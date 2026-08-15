@@ -2,6 +2,7 @@ import 'package:daycare_management_system_mobile/components/daycare-button.dart'
 import 'package:daycare_management_system_mobile/const/daycareColors.dart';
 import 'package:daycare_management_system_mobile/view/onboarding/onboarding-controller.dart';
 import 'package:daycare_management_system_mobile/view/onboarding/widgets/pageview-content.dart';
+import 'package:daycare_management_system_mobile/view/role/role-selection-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -125,7 +126,7 @@ class OnboardingScreen extends StatelessWidget {
                           onboardingData.length - 1) {
                         onboardingController.nextPage();
                       } else {
-                        context.go('/login');
+                        Get.to(RoleSelectionScreen(),);
                       }
                     },
                     text: onboardingController.currentPage.value <
@@ -133,7 +134,7 @@ class OnboardingScreen extends StatelessWidget {
                         ? 'Next'
                         : 'Get Started',
                     backgroundColor: const Color(0xff102A43),
-                    textColor: daycareColors.primary,
+                    textColor: Color(0xffffffff),
                   ),
                 ),
               ],
