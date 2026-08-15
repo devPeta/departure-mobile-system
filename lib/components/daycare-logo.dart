@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-class YaksLogo extends StatelessWidget {
+class DaycareLogo extends StatelessWidget {
   final bool? showText;
-  const YaksLogo({Key? key, this.showText = false});
+  const DaycareLogo({Key? key, this.showText = false});
 
   @override
   Widget build(BuildContext context) {

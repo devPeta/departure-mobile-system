@@ -1,9 +1,7 @@
-import 'package:daycare_management_system_mobile/view/role/dayRoleSelection.dart';
+import 'package:daycare_management_system_mobile/view/role/day-role-selection.dart';
 import 'package:daycare_management_system_mobile/view/role/widgets/selection-card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-
 
 class RoleSelectionScreen extends StatelessWidget {
   RoleSelectionScreen({super.key});
@@ -13,16 +11,19 @@ class RoleSelectionScreen extends StatelessWidget {
 
   final List<Map<String, dynamic>> roles = [
     {
+      'role': UserRole.parent,
       'title': 'Parent / Guardian',
       'subtitle': 'Authorized family pickup contact',
       'icon': Icons.people_outline,
     },
     {
+      'role': UserRole.staff,
       'title': 'Daycare Staff',
       'subtitle': 'Teachers & reception verification specialists',
       'icon': Icons.assignment_outlined,
     },
     {
+      'role': UserRole.admin,
       'title': 'Administrator',
       'subtitle': 'System settings, database control & audits',
       'icon': Icons.settings_outlined,
@@ -40,8 +41,6 @@ class RoleSelectionScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              // TOP BAR
               const SizedBox(height: 20),
 
               Row(
@@ -72,7 +71,7 @@ class RoleSelectionScreen extends StatelessWidget {
 
               const SizedBox(height: 28),
 
-              // PROGRESS INDICATOR
+
               Center(
                 child: Container(
                   width: 12,
@@ -86,7 +85,7 @@ class RoleSelectionScreen extends StatelessWidget {
 
               const SizedBox(height: 40),
 
-              // TITLE
+
               const Text(
                 'Select Your Role',
                 style: TextStyle(
@@ -98,7 +97,8 @@ class RoleSelectionScreen extends StatelessWidget {
 
               const SizedBox(height: 8),
 
-              // DESCRIPTION
+
+
               const Text(
                 'Please choose the clearance level required for your system workspace.',
                 style: TextStyle(
@@ -110,25 +110,34 @@ class RoleSelectionScreen extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              // ROLE CARDS
+
+
               Expanded(
                 child: ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: roles.length,
-                  separatorBuilder: (_, __) =>
-                  const SizedBox(height: 16),
+
+                  separatorBuilder: (_, __) {
+                    return const SizedBox(height: 16);
+                  },
+
                   itemBuilder: (context, index) {
                     final role = roles[index];
+
+                    final UserRole userRole = role['role'];
 
                     return Obx(
                           () => RoleSelectionCard(
                         title: role['title'],
                         subtitle: role['subtitle'],
                         icon: role['icon'],
-                        isSelected:
-                        controller.isSelected(index),
+
+                        // Check selected role
+                        isSelected: controller.isSelected(userRole),
+
+                        // Select role
                         onTap: () {
-                          controller.selectRole(index);
+                          controller.selectRole(userRole);
                         },
                       ),
                     );
@@ -136,7 +145,7 @@ class RoleSelectionScreen extends StatelessWidget {
                 ),
               ),
 
-              // CONTINUE BUTTON
+
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: SizedBox(
@@ -145,19 +154,22 @@ class RoleSelectionScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       debugPrint(
-                        'Selected: ${controller.selectedRoleName}',
+                        'Selected Role: ${controller.selectedRole.value}',
                       );
 
-                      // Navigate to Step 2
+                      controller.continueToLogin();
                     },
+
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff102A43),
                       foregroundColor: Colors.white,
                       elevation: 0,
+
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
+
                     child: const Text(
                       'Continue',
                       style: TextStyle(
