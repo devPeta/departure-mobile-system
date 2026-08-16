@@ -52,7 +52,7 @@ class ParentVerificationScreen extends StatelessWidget {
                       Get.to(() => ParentBottomNavigation());
                     },
                     child: const Text(
-                      'Step 3 of 3',
+                      'SKIPS',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -67,7 +67,7 @@ class ParentVerificationScreen extends StatelessWidget {
 
 
               const Text(
-                'Security Identification',
+                'Parent Identification',
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w700,

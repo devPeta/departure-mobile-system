@@ -1,3 +1,4 @@
+import 'package:daycare_management_system_mobile/view/staff/navigation/staff-navigation-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,6 +25,7 @@ class StaffLoginController extends GetxController {
       // TODO: Add Firebase authentication here.
       await Future.delayed(const Duration(seconds: 2));
 
+      Get.to(StaffBottomNavigation());
       debugPrint('Email: ${emailController.text}');
       debugPrint('Password: ${passwordController.text}');
     } finally {

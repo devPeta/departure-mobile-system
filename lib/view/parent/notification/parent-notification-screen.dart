@@ -28,11 +28,7 @@ class ParentNotificationsScreen extends StatelessWidget {
               // ==========================================
 
               Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  0,
-                  8,
-                  8,
-                  18,
+                padding: const EdgeInsets.all(16
                 ),
                 child: Row(
                   children: [

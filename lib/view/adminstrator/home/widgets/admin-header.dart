@@ -26,7 +26,7 @@ class AdminHeader extends StatelessWidget {
               SizedBox(height: 2),
 
               Text(
-                'Chief Admin Portal',
+                'Admin Portal',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,

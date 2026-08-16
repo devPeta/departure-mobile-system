@@ -8,15 +8,7 @@ class DaycareLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children:[
-        CircleAvatar(
-          backgroundColor: Colors.black12,
-          child: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Image.asset('assets/images/logo.png'),
-              )),
-        ),
+       Icon(Icons.book_online),
         SizedBox(width: 8,),
         if (showText!)
           Text(

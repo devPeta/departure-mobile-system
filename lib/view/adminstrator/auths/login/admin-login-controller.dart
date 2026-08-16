@@ -1,3 +1,4 @@
+import 'package:daycare_management_system_mobile/view/adminstrator/navigation/admin-navigation-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +27,7 @@ class AdminLoginController extends GetxController {
 
       debugPrint('Email: ${emailController.text}');
       debugPrint('Password: ${passwordController.text}');
+      Get.to(AdminBottomNavigation(),);
     } finally {
       isLoading.value = false;
     }

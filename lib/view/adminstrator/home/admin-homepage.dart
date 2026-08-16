@@ -27,11 +27,8 @@ class AdminHome extends StatelessWidget {
             physics:
             const AlwaysScrollableScrollPhysics(),
 
-            padding: const EdgeInsets.fromLTRB(
-              6,
-              4,
-              6,
-              30,
+            padding: const EdgeInsets.all(
+              16
             ),
 
             child: Column(
@@ -39,9 +36,7 @@ class AdminHome extends StatelessWidget {
               CrossAxisAlignment.start,
 
               children: [
-                // ==========================================
-                // HEADER
-                // ==========================================
+
 
                 const AdminHeader(),
 
@@ -51,11 +46,15 @@ class AdminHome extends StatelessWidget {
                 // STATISTICS
                 // ==========================================
 
-                Obx(
-                      () => StatisticsGrid(
-                    controller: controller,
-                  ),
+                StatisticsGrid(
+                  controller: controller,
                 ),
+
+                // Obx(
+                //       () => StatisticsGrid(
+                //     controller: controller,
+                //   ),
+                // ),
 
                 const SizedBox(height: 18),
 
@@ -63,12 +62,17 @@ class AdminHome extends StatelessWidget {
                 // ACTIVITY CHART
                 // ==========================================
 
-                Obx(
-                      () => ActivityChart(
-                    values:
-                    controller.departureActivity,
-                  ),
+                ActivityChart(
+                  values:
+                  controller.departureActivity,
                 ),
+
+                // Obx(
+                //       () => ActivityChart(
+                //     values:
+                //     controller.departureActivity,
+                //   ),
+                // ),
 
                 const SizedBox(height: 18),
 

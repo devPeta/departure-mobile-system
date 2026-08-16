@@ -103,7 +103,7 @@ class ParentSignup extends StatelessWidget {
                       SizedBox(height: 26.h),
 
                       Text(
-                        'Create Security Profile',
+                        'Create Parent Profile',
                         style: GoogleFonts.inter(
                           color: const Color(0xff0F172A),
                           fontSize: 25.sp,
@@ -175,12 +175,12 @@ class ParentSignup extends StatelessWidget {
 
                       SizedBox(height: 16.h),
 
-                      _buildLabel('Master Security Password'),
+                      _buildLabel('Password'),
 
                       SizedBox(height: 7.h),
 
                       DayCareTextField(
-                        hintText: 'Create strong security password',
+                        hintText: 'Password',
                         prefix: Icon(
                           Icons.lock_outline_rounded,
                           color: const Color(0xff94A3B8),
@@ -197,7 +197,7 @@ class ParentSignup extends StatelessWidget {
                       SizedBox(height: 7.h),
 
                       DayCareTextField(
-                        hintText: 'Retype to confirm security credentials',
+                        hintText: 'Retype password',
                         prefix: Icon(
                           Icons.lock_outline_rounded,
                           color: const Color(0xff94A3B8),

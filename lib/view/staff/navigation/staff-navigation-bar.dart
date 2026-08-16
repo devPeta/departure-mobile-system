@@ -1,29 +1,23 @@
-import 'package:daycare_management_system_mobile/view/parent/history/parent-departure-history.dart';
-import 'package:daycare_management_system_mobile/view/parent/home/homepage/parent-home.dart';
-import 'package:daycare_management_system_mobile/view/parent/home/navigation/parent-navigation-controller.dart';
-import 'package:daycare_management_system_mobile/view/parent/notification/parent-notification-screen.dart';
-import 'package:daycare_management_system_mobile/view/parent/profile/parent-profile-screen.dart';
+import 'package:daycare_management_system_mobile/view/adminstrator/home/admin-homepage.dart';
+import 'package:daycare_management_system_mobile/view/adminstrator/navigation/admin-navigation-controller.dart';
+import 'package:daycare_management_system_mobile/view/adminstrator/settings/admin-setting-screen.dart';
+import 'package:daycare_management_system_mobile/view/staff/children/staff-children-screen.dart';
+import 'package:daycare_management_system_mobile/view/staff/home/staff-homepage.dart';
+import 'package:daycare_management_system_mobile/view/staff/navigation/staff-navigation-controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ParentBottomNavigation extends StatelessWidget {
-  ParentBottomNavigation({super.key});
+class StaffBottomNavigation extends StatelessWidget {
+  StaffBottomNavigation({super.key});
 
-  final ParentNavigationController controller =
-  Get.put(ParentNavigationController());
+  final StaffNavigationController controller =
+  Get.put(StaffNavigationController());
 
   final List<Widget> pages = [
-    ParentHome(),
+    StaffHome(),
 
-    const Center(
-      child: Text('Children'),
-    ),
-
-    ParentDepartureLogs(),
-
-    ParentNotificationsScreen(),
-
-    ParentProfile(),
+    StaffChildren(),
+    AdminSettings(),
 
   ];
 
@@ -32,7 +26,6 @@ class ParentBottomNavigation extends StatelessWidget {
     return Obx(
           () => Scaffold(
         backgroundColor: const Color(0xffF8FAFC),
-
         body: IndexedStack(
           index: controller.currentIndex.value,
           children: pages,
@@ -50,21 +43,14 @@ class ParentBottomNavigation extends StatelessWidget {
         activeIcon: Icons.home_rounded,
         label: 'Home',
       ),
+
       _NavigationItem(
-        icon: Icons.people_outline_rounded,
-        activeIcon: Icons.people_rounded,
+        icon: Icons.child_care,
+        activeIcon: Icons.home_rounded,
         label: 'Children',
       ),
-      _NavigationItem(
-        icon: Icons.assignment_outlined,
-        activeIcon: Icons.assignment_rounded,
-        label: 'History',
-      ),
-      _NavigationItem(
-        icon: Icons.notifications_none_rounded,
-        activeIcon: Icons.notifications_rounded,
-        label: 'Alerts',
-      ),
+
+
       _NavigationItem(
         icon: Icons.settings_outlined,
         activeIcon: Icons.settings_rounded,

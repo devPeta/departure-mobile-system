@@ -23,11 +23,8 @@ class StaffChildren extends StatelessWidget {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(
-            12,
-            8,
-            12,
-            30,
+          padding: const EdgeInsets.all(
+         16
           ),
           child: Column(
             crossAxisAlignment:
