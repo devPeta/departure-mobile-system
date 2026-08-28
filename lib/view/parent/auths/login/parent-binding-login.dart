@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import 'parent-login-controller.dart';
 
-class ParentSignupBinding extends Bindings {
+class ParentLoginBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ParentLoginController>(
