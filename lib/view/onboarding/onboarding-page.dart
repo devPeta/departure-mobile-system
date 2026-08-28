@@ -1,11 +1,11 @@
 import 'package:daycare_management_system_mobile/components/daycare-button.dart';
-import 'package:daycare_management_system_mobile/const/daycareColors.dart';
 import 'package:daycare_management_system_mobile/view/onboarding/onboarding-controller.dart';
 import 'package:daycare_management_system_mobile/view/onboarding/widgets/pageview-content.dart';
 import 'package:daycare_management_system_mobile/view/role/role-selection-screen.dart';
+import 'package:daycare_management_system_mobile/view/storage-services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
+
 
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({super.key});
@@ -121,22 +121,38 @@ class OnboardingScreen extends StatelessWidget {
                 // BUTTON
                 Obx(
                       () => DayCareButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (onboardingController.currentPage.value <
                           onboardingData.length - 1) {
+
                         onboardingController.nextPage();
+
                       } else {
-                        Get.to(RoleSelectionScreen(),);
+
+                        // Mark onboarding as completed
+                        await StorageService.setOnboardingComplete(
+                          true,
+                        );
+
+                        // Go to role selection
+                        Get.offAll(
+                              () => RoleSelectionScreen(),
+                        );
                       }
                     },
+
                     text: onboardingController.currentPage.value <
                         onboardingData.length - 1
                         ? 'Next'
                         : 'Get Started',
-                    backgroundColor: const Color(0xff102A43),
-                    textColor: Color(0xffffffff),
+
+                    backgroundColor:
+                    const Color(0xff102A43),
+
+                    textColor: Colors.white,
                   ),
                 ),
+
               ],
             ),
           ),

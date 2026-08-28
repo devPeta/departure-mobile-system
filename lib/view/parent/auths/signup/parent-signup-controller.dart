@@ -1,8 +1,13 @@
-import 'package:daycare_management_system_mobile/view/parent/auths/otp/parent-otp-screen.dart';
+import 'package:daycare_management_system_mobile/view/auth-service.dart';
+import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-login.dart';
+import 'package:daycare_management_system_mobile/view/parent/auths/signup/parent-binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ParentSignupController extends GetxController {
+  final AuthService _authService = AuthService();
+
   final fullNameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
@@ -12,75 +17,166 @@ class ParentSignupController extends GetxController {
   final isLoading = false.obs;
 
   Future<void> signUp() async {
-    if (fullNameController.text.trim().isEmpty ||
-        emailController.text.trim().isEmpty ||
-        phoneController.text.trim().isEmpty ||
-        passwordController.text.trim().isEmpty ||
-        confirmPasswordController.text.trim().isEmpty) {
-      Get.snackbar(
+    final fullName =
+    fullNameController.text.trim();
+
+    final email =
+    emailController.text.trim();
+
+    final phone =
+    phoneController.text.trim();
+
+    final password =
+    passwordController.text.trim();
+
+    final confirmPassword =
+    confirmPasswordController.text.trim();
+
+    // -------------------------------
+    // VALIDATION
+    // -------------------------------
+
+    if (fullName.isEmpty ||
+        email.isEmpty ||
+        phone.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty) {
+      _showError(
         'Required',
         'Please complete all fields.',
-        snackPosition: SnackPosition.BOTTOM,
       );
       return;
     }
 
-    if (!GetUtils.isEmail(emailController.text.trim())) {
-      Get.snackbar(
+    if (!GetUtils.isEmail(email)) {
+      _showError(
         'Invalid Email',
         'Please enter a valid email address.',
-        snackPosition: SnackPosition.BOTTOM,
       );
       return;
     }
 
-    if (passwordController.text.trim().length < 6) {
-      Get.snackbar(
+    if (password.length < 6) {
+      _showError(
         'Weak Password',
         'Password must be at least 6 characters.',
-        snackPosition: SnackPosition.BOTTOM,
       );
       return;
     }
 
-    if (passwordController.text.trim() !=
-        confirmPasswordController.text.trim()) {
-      Get.snackbar(
+    if (password != confirmPassword) {
+      _showError(
         'Password Mismatch',
         'Passwords do not match.',
-        snackPosition: SnackPosition.BOTTOM,
       );
       return;
     }
+
+    // -------------------------------
+    // NAME
+    // -------------------------------
+
+    final nameParts =
+    fullName.split(RegExp(r'\s+'));
+
+    if (nameParts.length < 2) {
+      _showError(
+        'Invalid Name',
+        'Please enter your first and last name.',
+      );
+      return;
+    }
+
+    final firstName = nameParts.first;
+
+    final lastName =
+    nameParts.sublist(1).join(' ');
+
+    // -------------------------------
+    // SIGN UP
+    // -------------------------------
 
     try {
       isLoading.value = true;
 
-      // TODO: Connect to your backend/API here.
-      await Future.delayed(const Duration(seconds: 2));
-
-      debugPrint('Full Name: ${fullNameController.text.trim()}');
-      debugPrint('Email: ${emailController.text.trim()}');
-      debugPrint('Phone: ${phoneController.text.trim()}');
-      debugPrint('Password: ${passwordController.text.trim()}');
-
-      Get.snackbar(
-        'Success',
-        'Parent account details submitted successfully.',
-        snackPosition: SnackPosition.BOTTOM,
+      final response =
+      await _authService.signUpParent(
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
       );
 
-      // TODO: Navigate to Step 3 after backend integration.
-      Get.to(ParentOtpScreen(email: emailController.text.trim(),));
-    } catch (e) {
+      if (response.user == null) {
+        _showError(
+          'Registration Failed',
+          'Unable to create your account.',
+        );
+        return;
+      }
+
+      // Email confirmation enabled
+      if (response.session == null) {
+        Get.snackbar(
+          'Account Created',
+          'Please check your email and verify your account before signing in.',
+          snackPosition: SnackPosition.BOTTOM,
+          colorText: Colors.white,
+          backgroundColor: Colors.green,
+          duration: const Duration(seconds: 5),
+        );
+
+        Get.offAll(
+              () => ParentLogin(),
+              binding: ParentSignupBinding(),
+        );
+
+        return;
+      }
+
+      // Email confirmation disabled
       Get.snackbar(
+        'Account Created',
+        'Your parent account has been created successfully.',
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: Colors.white,
+        backgroundColor: Colors.green,
+      );
+
+      Get.offAll(
+            () => ParentLogin(),
+      );
+    } on AuthException catch (e) {
+      _showError(
+        'Registration Failed',
+        e.message,
+      );
+    } catch (e) {
+      debugPrint(
+        'Parent signup error: $e',
+      );
+
+      _showError(
         'Error',
         'Something went wrong. Please try again.',
-        snackPosition: SnackPosition.BOTTOM,
       );
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void _showError(
+      String title,
+      String message,
+      ) {
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      colorText: Colors.white,
+      backgroundColor: Colors.redAccent,
+    );
   }
 
   @override

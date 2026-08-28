@@ -1,9 +1,10 @@
 
 import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-login.dart';
 import 'package:daycare_management_system_mobile/view/staff/auths/login/staff-login.dart';
-import 'package:get/get.dart';
+import 'package:daycare_management_system_mobile/view/adminstrator/auths/login/admin-login.dart';
+import 'package:daycare_management_system_mobile/view/storage-services.dart';
 
-import '../adminstrator/auths/login/admin-login.dart';
+import 'package:get/get.dart';
 
 enum UserRole {
   parent,
@@ -12,33 +13,61 @@ enum UserRole {
 }
 
 class RoleSelectionController extends GetxController {
-  // Parent is selected by default
-  final Rx<UserRole> selectedRole = UserRole.parent.obs;
+  // No role selected initially
+  final Rx<UserRole?> selectedRole =
+  Rx<UserRole?>(null);
 
-  // Select a role
+  // Select role
   void selectRole(UserRole role) {
     selectedRole.value = role;
   }
 
-  // Check whether a particular role is selected
+  // Check selected role
   bool isSelected(UserRole role) {
     return selectedRole.value == role;
   }
 
-  // Navigate to the appropriate login screen
-  void continueToLogin() {
-    switch (selectedRole.value) {
+  // Continue
+  Future<void> continueToLogin() async {
+    final UserRole? role = selectedRole.value;
+
+    // Make sure user selected a role
+    if (role == null) {
+      Get.snackbar(
+        'Select a role',
+        'Please select your role before continuing.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+
+      return;
+    }
+
+    // Save selected role locally
+    await StorageService.saveRole(
+      role.name,
+    );
+
+    switch (role) {
       case UserRole.parent:
-        Get.to(() => ParentLogin());
+        Get.offAll(
+              () => ParentLogin(),
+        );
         break;
 
       case UserRole.staff:
-        Get.to(() => StaffLogin());
+        Get.offAll(
+              () => StaffLogin(),
+        );
         break;
 
       case UserRole.admin:
-        Get.to(() => AdminLogin());
+        Get.offAll(
+              () => AdminLogin(),
+        );
         break;
     }
   }
 }
+
+
+

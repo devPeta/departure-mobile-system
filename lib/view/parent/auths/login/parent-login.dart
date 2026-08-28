@@ -2,18 +2,16 @@ import 'package:daycare_management_system_mobile/components/daycar-textfield.dar
 import 'package:daycare_management_system_mobile/components/daycare-button.dart';
 import 'package:daycare_management_system_mobile/components/daycare-logo.dart';
 import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-login-controller.dart';
+import 'package:daycare_management_system_mobile/view/parent/auths/signup/parent-signup-controller.dart';
 import 'package:daycare_management_system_mobile/view/parent/auths/signup/parent-signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 
 class ParentLogin extends StatelessWidget {
   ParentLogin({super.key});
 
-  final ParentLoginController controller =
-  Get.put(ParentLoginController());
 
   static const Color primaryColor = Color(0xff102A43);
   static const Color buttonColor = Color(0xff52667A);
@@ -22,6 +20,11 @@ class ParentLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+    final ParentLoginController controller =
+    Get.find<ParentLoginController>();
+
     return Scaffold(
       backgroundColor: backgroundColor,
       resizeToAvoidBottomInset: true,

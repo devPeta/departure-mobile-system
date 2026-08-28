@@ -1,5 +1,7 @@
+import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-login.dart';
 import 'package:daycare_management_system_mobile/view/role/day-role-selection.dart';
 import 'package:daycare_management_system_mobile/view/role/widgets/selection-card.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,13 +21,15 @@ class RoleSelectionScreen extends StatelessWidget {
     {
       'role': UserRole.staff,
       'title': 'Daycare Staff',
-      'subtitle': 'Teachers & reception verification specialists',
+      'subtitle':
+      'Teachers & reception verification specialists',
       'icon': Icons.assignment_outlined,
     },
     {
       'role': UserRole.admin,
       'title': 'Administrator',
-      'subtitle': 'System settings, database control & audits',
+      'subtitle':
+      'System settings, database control & audits',
       'icon': Icons.settings_outlined,
     },
   ];
@@ -37,9 +41,12 @@ class RoleSelectionScreen extends StatelessWidget {
 
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment:
+            CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
 
@@ -71,20 +78,19 @@ class RoleSelectionScreen extends StatelessWidget {
 
               const SizedBox(height: 28),
 
-
               Center(
                 child: Container(
                   width: 12,
                   height: 2,
                   decoration: BoxDecoration(
                     color: Colors.pinkAccent,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius:
+                    BorderRadius.circular(10),
                   ),
                 ),
               ),
 
               const SizedBox(height: 40),
-
 
               const Text(
                 'Select Your Role',
@@ -97,8 +103,6 @@ class RoleSelectionScreen extends StatelessWidget {
 
               const SizedBox(height: 8),
 
-
-
               const Text(
                 'Please choose the clearance level required for your system workspace.',
                 style: TextStyle(
@@ -110,34 +114,40 @@ class RoleSelectionScreen extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-
-
               Expanded(
                 child: ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: roles.length,
 
                   separatorBuilder: (_, __) {
-                    return const SizedBox(height: 16);
+                    return const SizedBox(
+                      height: 16,
+                    );
                   },
 
                   itemBuilder: (context, index) {
                     final role = roles[index];
 
-                    final UserRole userRole = role['role'];
+                    final UserRole userRole =
+                    role['role'] as UserRole;
 
                     return Obx(
                           () => RoleSelectionCard(
-                        title: role['title'],
-                        subtitle: role['subtitle'],
-                        icon: role['icon'],
+                        title:
+                        role['title'] as String,
+                        subtitle:
+                        role['subtitle'] as String,
+                        icon:
+                        role['icon'] as IconData,
 
-                        // Check selected role
-                        isSelected: controller.isSelected(userRole),
+                        isSelected:
+                        controller.isSelected(
+                          userRole,
+                        ),
 
-                        // Select role
                         onTap: () {
-                          controller.selectRole(userRole);
+                          controller.selectRole(
+                            userRole,
+                          );
                         },
                       ),
                     );
@@ -145,36 +155,49 @@ class RoleSelectionScreen extends StatelessWidget {
                 ),
               ),
 
-
               Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(
+                  bottom: 20,
+                ),
                 child: SizedBox(
                   width: double.infinity,
                   height: 56,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      debugPrint(
-                        'Selected Role: ${controller.selectedRole.value}',
-                      );
+                  child: Obx(
+                        () => ElevatedButton(
+                      onPressed:
+                      controller.selectedRole.value ==
+                          null
+                          ? null
+                          : () {
+                        controller
+                            .continueToLogin();
+                      },
 
-                      controller.continueToLogin();
-                    },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                        const Color(0xff102A43),
+                        foregroundColor:
+                        Colors.white,
+                        disabledBackgroundColor:
+                        Colors.grey.shade300,
+                        elevation: 0,
 
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff102A43),
-                      foregroundColor: Colors.white,
-                      elevation: 0,
-
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        shape:
+                        RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.circular(
+                            16,
+                          ),
+                        ),
                       ),
-                    ),
 
-                    child: const Text(
-                      'Continue',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                      child: const Text(
+                        'Continue',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight:
+                          FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),

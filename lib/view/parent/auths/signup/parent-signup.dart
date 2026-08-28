@@ -9,8 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 class ParentSignup extends StatelessWidget {
   ParentSignup({super.key});
 
-  final ParentSignupController controller =
-  Get.put(ParentSignupController());
+  // final ParentSignupController controller =
+  // Get.put(ParentSignupController());
 
   static const Color primaryColor = Color(0xff102A43);
   static const Color backgroundColor = Color(0xffF7F9FC);
@@ -19,6 +19,9 @@ class ParentSignup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ParentSignupController controller =
+    Get.find<ParentSignupController>();
+
     return Scaffold(
       backgroundColor: backgroundColor,
       resizeToAvoidBottomInset: true,
@@ -41,29 +44,16 @@ class ParentSignup extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () => Get.back(),
-                            child: Container(
-                              padding: EdgeInsets.all(6.w),
-                              child: Icon(
-                                Icons.arrow_back_ios_new_rounded,
-                                color: const Color(0xff475569),
-                                size: 18.sp,
-                              ),
-                            ),
+                      GestureDetector(
+                        onTap: () => Get.back(),
+                        child: Container(
+                          padding: EdgeInsets.all(6.w),
+                          child: Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: const Color(0xff475569),
+                            size: 18.sp,
                           ),
-                          Text(
-                            'Step 2 of 3',
-                            style: GoogleFonts.inter(
-                              color: const Color(0xff475569),
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
 
                       SizedBox(height: 16.h),
