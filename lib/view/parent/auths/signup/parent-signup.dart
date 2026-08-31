@@ -9,8 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
 class ParentSignup extends StatelessWidget {
   ParentSignup({super.key});
 
-  // final ParentSignupController controller =
-  // Get.put(ParentSignupController());
 
   static const Color primaryColor = Color(0xff102A43);
   static const Color backgroundColor = Color(0xffF7F9FC);

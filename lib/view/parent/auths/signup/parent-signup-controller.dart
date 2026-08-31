@@ -1,6 +1,6 @@
 import 'package:daycare_management_system_mobile/view/auth-service.dart';
+import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-binding-login.dart';
 import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-login.dart';
-import 'package:daycare_management_system_mobile/view/parent/auths/signup/parent-binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -129,7 +129,7 @@ class ParentSignupController extends GetxController {
 
         Get.offAll(
               () => ParentLogin(),
-              binding: ParentSignupBinding(),
+              binding: ParentLoginBinding(),
         );
 
         return;
@@ -146,6 +146,7 @@ class ParentSignupController extends GetxController {
 
       Get.offAll(
             () => ParentLogin(),
+            binding: ParentLoginBinding(),
       );
     } on AuthException catch (e) {
       _showError(

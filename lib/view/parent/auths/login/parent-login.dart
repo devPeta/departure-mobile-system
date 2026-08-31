@@ -2,6 +2,7 @@ import 'package:daycare_management_system_mobile/components/daycar-textfield.dar
 import 'package:daycare_management_system_mobile/components/daycare-button.dart';
 import 'package:daycare_management_system_mobile/components/daycare-logo.dart';
 import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-login-controller.dart';
+import 'package:daycare_management_system_mobile/view/parent/auths/signup/parent-binding.dart';
 import 'package:daycare_management_system_mobile/view/parent/auths/signup/parent-signup-controller.dart';
 import 'package:daycare_management_system_mobile/view/parent/auths/signup/parent-signup.dart';
 import 'package:flutter/material.dart';
@@ -115,24 +116,24 @@ class ParentLogin extends StatelessWidget {
                       SizedBox(height: 12.h),
 
 
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          onTap: () {
-                            // Add forgot password navigation here.
-                          },
-                          child: Text(
-                            'Forgot password?',
-                            style: GoogleFonts.inter(
-                              color: primaryColor,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      SizedBox(height: 28.h),
+                      // Align(
+                      //   alignment: Alignment.centerRight,
+                      //   child: GestureDetector(
+                      //     onTap: () {
+                      //       // Add forgot password navigation here.
+                      //     },
+                      //     child: Text(
+                      //       'Forgot password?',
+                      //       style: GoogleFonts.inter(
+                      //         color: primaryColor,
+                      //         fontSize: 12.sp,
+                      //         fontWeight: FontWeight.w600,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      //
+                      // SizedBox(height: 28.h),
 
 
                       Obx(
@@ -204,7 +205,10 @@ class ParentLogin extends StatelessWidget {
                           SizedBox(width: 6.w),
                           GestureDetector(
                             onTap: () {
-                              Get.to(ParentSignup(),);
+                              Get.offAll(
+                                ParentSignup(),
+                              binding: ParentSignupBinding(),
+                              );
                             },
                             child: Text(
                               'Sign up',

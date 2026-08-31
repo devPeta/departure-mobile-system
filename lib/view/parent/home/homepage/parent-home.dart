@@ -1,10 +1,14 @@
 import 'package:daycare_management_system_mobile/view/parent/home/homepage/widgets/child-card.dart';
 import 'package:daycare_management_system_mobile/view/parent/home/homepage/widgets/statics-card.dart';
+import 'package:daycare_management_system_mobile/view/parent/user-controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ParentHome extends StatelessWidget {
   ParentHome({super.key});
+
+  final UserController userController =
+  Get.find<UserController>();
 
   final List<Map<String, dynamic>> children = [
     {
@@ -161,8 +165,8 @@ class ParentHome extends StatelessWidget {
           child: Column(
             crossAxisAlignment:
             CrossAxisAlignment.start,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 'Welcome back,',
                 style: TextStyle(
                   fontSize: 14,
@@ -170,16 +174,29 @@ class ParentHome extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
 
-              Text(
-                'Sarah Miller',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xff102A43),
+              Obx(
+                    () => Text(
+                  userController.fullName.value.isEmpty
+                      ? 'Parent'
+                      : userController.fullName.value,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xff102A43),
+                  ),
                 ),
               ),
+
+              // Text(
+              //   'Sarah Miller',
+              //   style: TextStyle(
+              //     fontSize: 24,
+              //     fontWeight: FontWeight.w700,
+              //     color: Color(0xff102A43),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -220,45 +237,72 @@ class ParentHome extends StatelessWidget {
   // ==============================================
 
   Widget _buildStatistics() {
-    return Row(
-      children: [
-        Expanded(
-          child: StatCard(
-            value: '2',
-            label: 'Children',
-            valueColor:
-            const Color(0xff102A43),
-          ),
-        ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Use Wrap on very small screens
+        if (constraints.maxWidth < 380) {
+          return Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: [
+              SizedBox(
+                width: (constraints.maxWidth - 12) / 2,
+                child: const StatCard(
+                  value: '2',
+                  label: 'Children',
+                  valueColor: Color(0xff102A43),
+                ),
+              ),
+              SizedBox(
+                width: (constraints.maxWidth - 12) / 2,
+                child: const StatCard(
+                  value: '1',
+                  label: "Today's Departures",
+                  valueColor: Color(0xff20A878),
+                ),
+              ),
+              SizedBox(
+                width: (constraints.maxWidth - 12) / 2,
+                child: const StatCard(
+                  value: '0',
+                  label: 'Pending Pickups',
+                  valueColor: Color(0xffE5A300),
+                ),
+              ),
+            ],
+          );
+        }
 
-        const SizedBox(width: 12),
-
-        Expanded(
-          child: StatCard(
-            value: '1',
-            label: "Today's\nDepartures",
-            valueColor:
-            const Color(0xff20A878),
-          ),
-        ),
-
-        const SizedBox(width: 12),
-
-        Expanded(
-          child: StatCard(
-            value: '0',
-            label: 'Pending Pickups',
-            valueColor:
-            const Color(0xffE5A300),
-          ),
-        ),
-      ],
+        return Row(
+          children: [
+            Expanded(
+              child: StatCard(
+                value: '2',
+                label: 'Children',
+                valueColor: const Color(0xff102A43),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: StatCard(
+                value: '1',
+                label: "Today's Departures",
+                valueColor: const Color(0xff20A878),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: StatCard(
+                value: '0',
+                label: 'Pending Pickups',
+                valueColor: const Color(0xffE5A300),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
-
-  // ==============================================
-  // QUICK PICKUP
-  // ==============================================
 
   void _requestQuickPickup() {
     Get.snackbar(
