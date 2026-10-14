@@ -1,10 +1,14 @@
 
+import 'package:daycare_management_system_mobile/view/adminstrator/auths/login/admin-login-binding.dart';
 import 'package:daycare_management_system_mobile/view/parent/auths/login/parent-login.dart';
 import 'package:daycare_management_system_mobile/view/staff/auths/login/staff-login.dart';
 import 'package:daycare_management_system_mobile/view/adminstrator/auths/login/admin-login.dart';
+import 'package:daycare_management_system_mobile/view/staff/auths/login/staff-signup-binding.dart';
 import 'package:daycare_management_system_mobile/view/storage-services.dart';
 
 import 'package:get/get.dart';
+
+import '../parent/auths/login/parent-binding-login.dart';
 
 enum UserRole {
   parent,
@@ -51,18 +55,21 @@ class RoleSelectionController extends GetxController {
       case UserRole.parent:
         Get.offAll(
               () => ParentLogin(),
+          binding: ParentLoginBinding(),
         );
         break;
 
       case UserRole.staff:
         Get.offAll(
               () => StaffLogin(),
+          binding: StaffLoginBinding(),
         );
         break;
 
       case UserRole.admin:
         Get.offAll(
               () => AdminLogin(),
+          binding: AdminLoginBinding(),
         );
         break;
     }
